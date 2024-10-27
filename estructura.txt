@@ -1,0 +1,25 @@
+/recuperativa_dwim
+    /client => front
+        /src
+            /componentes => componentes de react (botones. formularios)
+            /pages => diseño de las paginas (inicio,login,vales,etc)
+            /service => Autentificacion API para la comunicaicon backend
+            /context => contexto de la app (autenticacion, usuarios)
+            /hooks => hooks para react (endpoints) (opcional)
+            .app.js => componenete principal de la app
+            .index.js => punto de entrada
+    /server 
+        /config => configuracion de base de datos y variables de entorno
+        /routes => rutas de las apis (autenticion, vales, servicios, etc)
+        /models => modelos de moongo (usuarios, vale, informe)
+        /middleware => middleware (autenticacion, validacion, etc)
+        /utils => utilidaes (envio de correo, formateo de fechas)
+        /controllers => controlar logica de negocio (vales y usuarios)
+        .app.js => configuracion de la aplicacion express
+        .server.js => putno de entrada del servidor 
+    
+    /scripts
+        /automatizacion de procesos
+    .env
+    .gitignore
+    .package.json

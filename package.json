@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/MaximilianoGarin/Recuperativa_DWIM/issues"
   },
-  "homepage": "https://github.com/MaximilianoGarin/Recuperativa_DWIM#readme"
+  "homepage": "https://github.com/MaximilianoGarin/Recuperativa_DWIM#readme",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongoose": "^8.7.3"
+  }
 }
