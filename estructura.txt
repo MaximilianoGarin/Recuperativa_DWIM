@@ -23,4 +23,3 @@
     .env
     .gitignore
     .package.json
-    hola chavales 
