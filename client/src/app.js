@@ -1,36 +1,40 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
+import React, { useState } from 'react';
+import LoginForm from './components/LoginForm';
+import TicketSales from './components/TicketSales';
+import UserCreation from './components/UserCreation';
+import './App.css';
 
-// Load environment variables
-dotenv.config();
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showUserCreation, setShowUserCreation] = useState(false);
 
-// Create Express app
-const app = express();
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  const toggleUserCreation = () => {
+    setShowUserCreation(!showUserCreation);
+  };
 
-// Connect to MongoDB
-mongoose.connect("mongodb+srv://MaxiGarin21:Maxi67924@proyectodw.gip16.mongodb.net/",{useNewUrlParser: true, useUnifiedTopology: true});
-// Routes
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the Food Ticket System API' });
-});
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Venta de tickets</h1>
+        {isLoggedIn ? (
+          <TicketSales />
+        ) : showUserCreation ? (
+          <UserCreation onBackToLogin={toggleUserCreation} />
+        ) : (
+          <>
+            <LoginForm onLoginSuccess={handleLoginSuccess} />
+            <button onClick={toggleUserCreation} className="create-user-btn">
+              Crear Usuario
+            </button>
+          </>
+        )}
+      </header>
+    </div>
+  );
+}
 
-// TODO: Add your routes here
-// app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/tickets', require('./routes/tickets'));
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'frontend-vales/build')));
-
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend-vales', 'index.html'));
-});
-
-module.exports = app;
+export default App;

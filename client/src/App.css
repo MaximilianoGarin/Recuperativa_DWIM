@@ -1,0 +1,67 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.login-form, .ticket-sales, .user-creation-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.login-form input, .ticket-sales input, .ticket-sales select, .user-creation-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-form button, .ticket-sales button, .user-creation-form button, .create-user-btn {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+  background-color: #61dafb;
+  color: white;
+  cursor: pointer;
+}
+
+.login-form button:hover, .ticket-sales button:hover, .user-creation-form button:hover, .create-user-btn:hover {
+  background-color: #21a1c1;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.create-user-btn {
+  margin-top: 20px;
+  background-color: #4CAF50;
+}
+
+.create-user-btn:hover {
+  background-color: #45a049;
+}
+
+.back-btn {
+  background-color: #f44336;
+}
+
+.back-btn:hover {
+  background-color: #da190b;
+}
