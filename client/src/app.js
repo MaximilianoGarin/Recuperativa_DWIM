@@ -24,11 +24,13 @@ app.get('/', (req, res) => {
 // TODO: Add your routes here
 // app.use('/api/auth', require('./routes/auth'));
 // app.use('/api/tickets', require('./routes/tickets'));
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'frontend-vales/build')));
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend-vales', 'index.html'));
 });
 
 module.exports = app;
