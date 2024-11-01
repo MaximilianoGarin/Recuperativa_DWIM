@@ -1,10 +1,8 @@
-// /client/src/service/api.js
-
 import axios from 'axios';
 
 // Configuración de la instancia de axios
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api', //=> url de mi server.js
+    baseURL: 'http://localhost:5000', // URL de mi server.js
     headers: {
         'Content-Type': 'application/json',
     },
@@ -31,29 +29,5 @@ export const register = async (userData) => {
         throw error;
     }
 };
-
-// Función para obtener usuarios
-export const getUsers = async () => {
-    try {
-        const response = await api.get('/users');
-        return response.data;
-    } catch (error) {
-        console.error('Error al obtener usuarios:', error);
-        throw error;
-    }
-};
-
-// Función para enviar "Hola Mundo"
-export const sendHello = async (message) => {
-    try {
-        const response = await api.post('/hello', { message });
-        return response.data;
-    } catch (error) {
-        console.error('Error al enviar mensaje:', error);
-        throw error;
-    }
-};
-
-// Puedes agregar más funciones para otros endpoints según sea necesario
 
 export default api;

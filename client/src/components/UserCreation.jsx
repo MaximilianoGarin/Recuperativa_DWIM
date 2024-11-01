@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { register } from '../service/api';
 
 function UserCreation({ onBackToLogin }) {
   const [name, setName] = useState('');
@@ -11,23 +12,10 @@ function UserCreation({ onBackToLogin }) {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:4000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
+      const data = await register({ name, email, password });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('User created successfully:', data);
-        alert('Usuario creado exitosamente. Por favor, inicie sesión.');
-        onBackToLogin();
-      } else {
-        setError(data.message || 'Error al crear usuario. Por favor, intente nuevamente.');
-      }
+      console.log('User registered successfully:', data);
+      onBackToLogin(); // Call the function to go back to login
     } catch (error) {
       console.error('Error:', error);
       setError('Ocurrió un error. Por favor, intente nuevamente.');
@@ -36,7 +24,7 @@ function UserCreation({ onBackToLogin }) {
 
   return (
     <form onSubmit={handleSubmit} className="user-creation-form">
-      <h2>Creación de Usuario</h2>
+      <h2>Crear Usuario</h2>
       {error && <p className="error-message">{error}</p>}
       <div>
         <label htmlFor="name">Nombre:</label>
@@ -49,7 +37,7 @@ function UserCreation({ onBackToLogin }) {
         />
       </div>
       <div>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Correo Electrónico:</label>
         <input
           type="email"
           id="email"

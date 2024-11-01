@@ -1,5 +1,3 @@
-// /server/controllers/authController.js
-
 const User = require('../models/user');
 
 // Registro de usuario
@@ -27,7 +25,7 @@ exports.login = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
-        res.json({ message: 'Autenticación exitosa' });
+        res.json({ message: 'Autenticación exitosa', user });
     } catch (error) {
         console.error('Error en la autenticación:', error);
         res.status(500).json({ error: 'Error en la autenticación' });

@@ -1,5 +1,3 @@
-// /server/app.js
-
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -14,7 +12,7 @@ app.use(bodyParser.json());
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
+app.use('/auth', authRoutes);
+app.use('/users', userRoutes);
 
 module.exports = app;
