@@ -7,9 +7,11 @@ import './App.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showUserCreation, setShowUserCreation] = useState(false);
+  const [userId, setUserId] = useState(null); // Agrega un estado para el userId
 
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (userId) => {
     setIsLoggedIn(true);
+    setUserId(userId); // Guarda el userId cuando el usuario inicie sesión
   };
 
   const toggleUserCreation = () => {
@@ -21,7 +23,7 @@ function App() {
       <header className="App-header">
         <h1>Venta de tickets</h1>
         {isLoggedIn ? (
-          <TicketSales />
+          <TicketSales userId={userId} /> // Pasa el userId al componente TicketSales
         ) : showUserCreation ? (
           <UserCreation onBackToLogin={toggleUserCreation} />
         ) : (

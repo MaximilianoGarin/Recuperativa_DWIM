@@ -14,7 +14,7 @@ function LoginForm({ onLoginSuccess }) {
       const data = await login({ id_user, password });
 
       console.log('Login successful:', data);
-      onLoginSuccess();
+      onLoginSuccess(data.user._id); // Pasa el userId al componente principal
     } catch (error) {
       console.error('Error:', error);
       setError('Ocurrió un error. Por favor, intente nuevamente.');

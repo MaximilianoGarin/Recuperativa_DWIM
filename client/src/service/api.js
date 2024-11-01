@@ -30,4 +30,15 @@ export const register = async (userData) => {
     }
 };
 
+// Función para vender tickets
+export const sellTicket = async (ticketData) => {
+    try {
+        const response = await api.post('/tickets/sell', ticketData);
+        return response.data;
+    } catch (error) {
+        console.error('Error al vender ticket:', error);
+        throw error;
+    }
+};
+
 export default api;

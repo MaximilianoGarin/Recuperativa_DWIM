@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
+import { sellTicket } from '../service/api';
 
-function TicketSales() {
+function TicketSales({ userId }) { // Asegúrate de pasar el userId como prop
   const [ticketType, setTicketType] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send a request to your backend to process the ticket sale
-    console.log('Ticket sale:', { ticketType, quantity });
-    // Reset form after submission
-    setTicketType('');
-    setQuantity(1);
+    setMessage('');
+
+    try {
+      const data = await sellTicket({ ticketType, quantity, userId });
+
+      console.log('Ticket sale successful:', data);
+      setMessage('Ticket vendido exitosamente');
+      // Reset form after submission
+      setTicketType('');
+      setQuantity(1);
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('Ocurrió un error. Por favor, intente nuevamente.');
+    }
   };
 
   return (
     <div className="ticket-sales">
       <h2>Venta de Tickets</h2>
+      {message && <p className="message">{message}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="ticketType">Tipo de Ticket:</label>
