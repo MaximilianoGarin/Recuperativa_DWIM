@@ -15,6 +15,7 @@ function UserCreation({ onBackToLogin }) {
       const data = await register({ name, email, password });
 
       console.log('User registered successfully:', data);
+      alert(`Usuario registrado exitosamente. Su ID de usuario es: ${data.id_user}`);
       onBackToLogin(); // Call the function to go back to login
     } catch (error) {
       console.error('Error:', error);
