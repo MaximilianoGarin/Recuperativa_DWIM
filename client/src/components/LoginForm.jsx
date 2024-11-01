@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { login } from '../service/api';
 
 function LoginForm({ onLoginSuccess }) {
-  const [email, setEmail] = useState('');
+  const [id_user, setIdUser] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -11,10 +11,10 @@ function LoginForm({ onLoginSuccess }) {
     setError('');
 
     try {
-      const data = await login({ email, password });
+      const data = await login({ id_user, password });
 
       console.log('Login successful:', data);
-      onLoginSuccess(); // Call the function passed from App component
+      onLoginSuccess();
     } catch (error) {
       console.error('Error:', error);
       setError('Ocurrió un error. Por favor, intente nuevamente.');
@@ -26,12 +26,12 @@ function LoginForm({ onLoginSuccess }) {
       <h2>Login</h2>
       {error && <p className="error-message">{error}</p>}
       <div>
-        <label htmlFor="email">Correo Electrónico:</label>
+        <label htmlFor="id_user">ID de Usuario:</label>
         <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          id="id_user"
+          value={id_user}
+          onChange={(e) => setIdUser(e.target.value)}
           required
         />
       </div>
