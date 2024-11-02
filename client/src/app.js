@@ -13,7 +13,6 @@ function App() {
   const handleLoginSuccess = (userId) => {
     setIsLoggedIn(true);
     setUserId(userId);
-    setShowUserCreation(false);
   };
 
   const toggleUserCreation = () => {
@@ -25,7 +24,7 @@ function App() {
       await logout();
       setIsLoggedIn(false);
       setUserId(null);
-      setShowUserCreation(false);
+      // No need to redirect here as the conditional rendering will show the LoginForm
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
       // You can handle the error here, e.g., by showing a message to the user
