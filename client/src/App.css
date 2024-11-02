@@ -1,67 +1,325 @@
-.App {
-  text-align: center;
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a1b26;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 2rem;
 }
 
-.login-form, .ticket-sales, .user-creation-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-  margin: 0 auto;
-}
-
-.login-form input, .ticket-sales input, .ticket-sales select, .user-creation-form input {
+/* Common form styles */
+.login-form,
+.ticket-sales,
+.user-creation-form {
+  background-color: #24283b;
+  padding: 2rem;
+  border-radius: 8px;
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  max-width: 400px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #414868;
 }
 
-.login-form button, .ticket-sales button, .user-creation-form button, .create-user-btn {
+.login-form h2,
+.ticket-sales h2,
+.user-creation-form h2 {
+  color: #7aa2f7;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Input styles */
+input,
+select {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
+  padding: 0.75rem;
+  margin: 0.5rem 0 1rem;
+  border-radius: 4px;
+  border: 1px solid #414868;
+  background-color: #1a1b26;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #7aa2f7;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #a9b1d6;
+}
+
+/* Button styles */
+button {
+  width: 100%;
+  padding: 0.75rem;
   border: none;
-  background-color: #61dafb;
-  color: white;
+  border-radius: 4px;
+  background-color: #7aa2f7;
+  color: #1a1b26;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0.5rem 0;
 }
 
-.login-form button:hover, .ticket-sales button:hover, .user-creation-form button:hover, .create-user-btn:hover {
-  background-color: #21a1c1;
-}
-
-.error-message {
-  color: red;
-  margin-bottom: 10px;
-}
-
-.create-user-btn {
-  margin-top: 20px;
-  background-color: #4CAF50;
-}
-
-.create-user-btn:hover {
-  background-color: #45a049;
+button:hover {
+  background-color: #89b4fa;
+  transform: translateY(-1px);
 }
 
 .back-btn {
-  background-color: #f44336;
+  background-color: #f7768e;
 }
 
 .back-btn:hover {
-  background-color: #da190b;
+  background-color: #ff7a93;
+}
+
+.create-user-btn {
+  background-color: #9ece6a;
+}
+
+.create-user-btn:hover {
+  background-color: #a6e3a1;
+}
+
+/* Header styles */
+.header {
+  width: 100%;
+  padding: 1rem;
+  background-color: #24283b;
+  border-bottom: 1px solid #414868;
+  margin-bottom: 2rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Info section styles */
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.user-info,
+.shift-info {
+  background-color: #1a1b26;
+  padding: 0.75rem;
+  border-radius: 4px;
+  flex: 1;
+  text-align: center;
+  border: 1px solid #414868;
+}
+
+/* Message styles */
+.error-message {
+  color: #f7768e;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.success-message {
+  color: #9ece6a;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Toast styles */
+.Toastify__toast {
+  background-color: #24283b;
+  color: #ffffff;
+}
+
+.Toastify__toast--success {
+  background-color: #9ece6a;
+}
+
+.Toastify__toast--error {
+  background-color: #f7768e;
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+  .login-form,
+  .ticket-sales,
+  .user-creation-form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .header {
+    padding: 0.75rem;
+  }
+}
+/* Estilos de los tickets */
+.ticket-sales-container {
+  min-height: 100vh;
+  background-color: #1a1b26;
+  color: #ffffff;
+}
+
+.header {
+  background-color: #1a1b26;
+  border-bottom: 1px solid #2f3342;
+  padding: 1rem 2rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.logout-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #2980b9;
+}
+
+.main-content {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.user-info-section {
+  background-color: #24283b;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.ticket-form-container {
+  background-color: #24283b;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-form-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #a9b1d6;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1a1b26;
+  border: 1px solid #2f3342;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.primary-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-button:hover {
+  background-color: #2980b9;
+}
+
+.message {
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #1a1b26;
+  border-radius: 4px;
+}
+
+/* Toast customization */
+.Toastify__toast {
+  background-color: #24283b;
+  color: #ffffff;
+}
+
+.Toastify__toast--success {
+  background-color: #2ecc71;
+}
+
+.Toastify__toast--error {
+  background-color: #e74c3c;
 }
