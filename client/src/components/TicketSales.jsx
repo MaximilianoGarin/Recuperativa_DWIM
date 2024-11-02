@@ -1,51 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { sellTicket } from '../service/api'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-function TicketSales() {
-  const [ticketType, setTicketType] = useState('');
-  const [quantity, setQuantity] = useState(1);
+export default function TicketSales({ userId, onLogout }) {
+  const [ticketType, setTicketType] = useState('')
+  const [quantity, setQuantity] = useState(1)
+  const [message, setMessage] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically send a request to your backend to process the ticket sale
-    console.log('Ticket sale:', { ticketType, quantity });
-    // Reset form after submission
-    setTicketType('');
-    setQuantity(1);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setMessage('')
+
+    try {
+      const data = await sellTicket({ ticketType, quantity, userId })
+      console.log('Ticket sale successful:', data)
+      setMessage('Ticket vendido exitosamente')
+      toast.success('Se generó el vale')
+      setTicketType('')
+      setQuantity(1)
+    } catch (error) {
+      console.error('Error:', error)
+      setMessage('Ocurrió un error. Por favor, intente nuevamente.')
+      toast.error('Error al generar el vale')
+    }
+  }
 
   return (
-    <div className="ticket-sales">
-      <h2>Venta de Tickets</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="ticketType">Tipo de Ticket:</label>
-          <select
-            id="ticketType"
-            value={ticketType}
-            onChange={(e) => setTicketType(e.target.value)}
-            required
-          >
-            <option value="">Seleccione un tipo</option>
-            <option value="general">General</option>
-            <option value="vip">VIP</option>
-            <option value="estudiante">Estudiante</option>
-          </select>
+    <div className="ticket-sales-container">
+      <header className="header">
+        <div className="header-content">
+          <h1>Empresa X</h1>
+          <h1>  </h1>
+          <button onClick={onLogout} className="logout-button">
+            Log out
+          </button>
         </div>
-        <div>
-          <label htmlFor="quantity">Cantidad:</label>
-          <input
-            type="number"
-            id="quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(parseInt(e.target.value))}
-            min="1"
-            required
-          />
-        </div>
-        <button type="submit">Vender Tickets</button>
-      </form>
-    </div>
-  );
-}
+      </header>
 
-export default TicketSales;
+      <main className="main-content">
+        <div className="user-info-section">
+          <span>Usuario: {userId}</span>
+          <br /> 
+          <span>Turno: {}</span>
+        </div>
+
+        <div className="ticket-form-container">
+          <h2>Venta de Tickets</h2>
+          <form onSubmit={handleSubmit}>
+            {message && (
+              <p className="message">{message}</p>
+            )}
+            
+            <div className="form-group">
+              <label>Tipo de Ticket:</label>
+              <select
+                value={ticketType}
+                onChange={(e) => setTicketType(e.target.value)}
+                required
+              >
+                <option value="">Seleccione un tipo</option>
+                <option value="general">General</option>
+                <option value="vip">VIP</option>
+                <option value="estudiante">Estudiante</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Cantidad:</label>
+              <input
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                min="1"
+                required
+              />
+            </div>
+
+            <div className="button-group">
+              <button type="submit" className="primary-button">
+                Vender Tickets
+              </button>
+              <button type="button" className="primary-button">
+                Pedir Varios
+              </button>
+              <button type="button" className="primary-button">
+                Imprimir
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+      <ToastContainer theme="dark" />
+    </div>
+  )
+}
