@@ -30,7 +30,6 @@ export default function TicketSales({ userId, onLogout }) {
     try {
       await onLogout()
       toast.success('Sesión cerrada exitosamente')
-      // The App component will handle the redirection to the login form
     } catch (error) {
       console.error('Error al cerrar sesión:', error)
       toast.error('Error al cerrar sesión')
