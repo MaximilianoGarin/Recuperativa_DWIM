@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 import LoginForm from './components/LoginForm';
 import TicketSales from './components/TicketSales';
 import UserCreation from './components/UserCreation';
-import './App.css';
+import './styles/App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showUserCreation, setShowUserCreation] = useState(false);
-  const [userId, setUserId] = useState(null); // Agrega un estado para el userId
+  const [user, setUser] = useState(null);
 
-  const handleLoginSuccess = (userId) => {
+  const handleLoginSuccess = (user) => {
     setIsLoggedIn(true);
-    setUserId(userId); // Guarda el userId cuando el usuario inicie sesión
+    setUser(user);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUser(null);
   };
 
   const toggleUserCreation = () => {
@@ -23,7 +28,7 @@ function App() {
       <header className="App-header">
         <h1>Venta de tickets</h1>
         {isLoggedIn ? (
-          <TicketSales userId={userId} /> // Pasa el userId al componente TicketSales
+          <TicketSales user={user} onLogout={handleLogout} />
         ) : showUserCreation ? (
           <UserCreation onBackToLogin={toggleUserCreation} />
         ) : (

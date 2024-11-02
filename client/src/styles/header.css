@@ -1,0 +1,17 @@
+/* Header styles */
+.header {
+    width: 100%;
+    padding: 1rem;
+    background-color: #24283b;
+    border-bottom: 1px solid #414868;
+    margin-bottom: 2rem;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }

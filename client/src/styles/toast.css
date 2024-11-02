@@ -1,0 +1,13 @@
+/* Toast styles */
+.Toastify__toast {
+    background-color: #24283b;
+    color: #ffffff;
+  }
+  
+  .Toastify__toast--success {
+    background-color: #9ece6a;
+  }
+  
+  .Toastify__toast--error {
+    background-color: #f7768e;
+  }
