@@ -2,32 +2,20 @@ import React, { useState } from 'react';
 import LoginForm from './components/LoginForm';
 import TicketSales from './components/TicketSales';
 import UserCreation from './components/UserCreation';
-import { logout } from './service/api';
 import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showUserCreation, setShowUserCreation] = useState(false);
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState(null); // Agrega un estado para el userId
 
   const handleLoginSuccess = (userId) => {
     setIsLoggedIn(true);
-    setUserId(userId);
+    setUserId(userId); // Guarda el userId cuando el usuario inicie sesión
   };
 
   const toggleUserCreation = () => {
     setShowUserCreation(!showUserCreation);
-  };
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      setIsLoggedIn(false);
-      setUserId(null);
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-      // Puedes manejar el error aquí, por ejemplo, mostrando un mensaje al usuario
-    }
   };
 
   return (
@@ -35,7 +23,7 @@ function App() {
       <header className="App-header">
         <h1>Venta de tickets</h1>
         {isLoggedIn ? (
-          <TicketSales userId={userId} onLogout={handleLogout} />
+          <TicketSales userId={userId} /> // Pasa el userId al componente TicketSales
         ) : showUserCreation ? (
           <UserCreation onBackToLogin={toggleUserCreation} />
         ) : (
