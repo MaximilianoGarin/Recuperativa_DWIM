@@ -24,9 +24,10 @@ function App() {
       await logout();
       setIsLoggedIn(false);
       setUserId(null);
+      // No need to redirect here as the conditional rendering will show the LoginForm
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
-      // Puedes manejar el error aquí, por ejemplo, mostrando un mensaje al usuario
+      // You can handle the error here, e.g., by showing a message to the user
     }
   };
 
