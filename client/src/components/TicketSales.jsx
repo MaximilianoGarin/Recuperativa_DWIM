@@ -3,28 +3,57 @@ import { sellTicket } from '../service/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from './Button';
+import jsPDF from 'jspdf';
 
 export default function TicketSales({ user, onLogout }) {
   const [ticketType, setTicketType] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState('');
+  const [ticketInfo, setTicketInfo] = useState(null);
+
+  const getTurno = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 8 && currentHour < 16) {
+      return 'Turno 1 (desayuno + almuerzo)';
+    } else if (currentHour >= 16 && currentHour < 24) {
+      return 'Turno 2 (once + cena1)';
+    } else {
+      return 'Turno 3 (cena2 + desayuno)';
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
 
     try {
-      const data = await sellTicket({ ticketType, quantity, userId: user.id_user });
+      const data = await sellTicket({ ticketType, quantity, userId: user._id });
       console.log('Ticket sale successful:', data);
       setMessage('Ticket vendido exitosamente');
       toast.success('Se generó el vale');
       setTicketType('');
       setQuantity(1);
+      setTicketInfo({
+        userId: user._id,
+        turno: getTurno(),
+        ticketType,
+        quantity,
+      });
     } catch (error) {
       console.error('Error:', error);
       setMessage('Ocurrió un error. Por favor, intente nuevamente.');
       toast.error('Error al generar el vale');
     }
+  };
+
+  const handlePrint = () => {
+    const doc = new jsPDF();
+    doc.text(`Usuario: ${user.name}`, 10, 10);
+    doc.text(`ID de Usuario: ${user._id}`, 10, 20);
+    doc.text(`Turno: ${getTurno()}`, 10, 30);
+    doc.text(`Tipo de Ticket: ${ticketType}`, 10, 40);
+    doc.text(`Cantidad: ${quantity}`, 10, 50);
+    doc.save('ticket.pdf');
   };
 
   return (
@@ -42,7 +71,7 @@ export default function TicketSales({ user, onLogout }) {
         <div className="user-info-section">
           <span>Usuario: {user.name}</span>
           <br />
-          <span>Turno: {}</span>
+          <span>Rol: {user.role}</span>
         </div>
 
         <div className="ticket-form-container">
@@ -77,13 +106,22 @@ export default function TicketSales({ user, onLogout }) {
 
             <div className="button-group">
               <Button type="submit">Vender Tickets</Button>
-              <Button type="button">Pedir Varios</Button>
-              <Button type="button">Imprimir</Button>
+              <Button type="button" onClick={handlePrint}>Imprimir</Button>
             </div>
           </form>
         </div>
       </main>
       <ToastContainer theme="dark" />
+      {ticketInfo && (
+        <div className="ticket-info-modal">
+          <h2>Información del Ticket</h2>
+          <p>ID de Usuario: {ticketInfo.userId}</p>
+          <p>Turno: {ticketInfo.turno}</p>
+          <p>Tipo de Ticket: {ticketInfo.ticketType}</p>
+          <p>Cantidad: {ticketInfo.quantity}</p>
+          <Button onClick={() => setTicketInfo(null)}>Cerrar</Button>
+        </div>
+      )}
     </div>
   );
 }

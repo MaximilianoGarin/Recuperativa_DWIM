@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { register } from '../service/api';
 
 function UserCreation({ onBackToLogin }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('funcionario');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
     try {
-      const data = await register({ name, email, password });
+      const data = await register({ name, email, password, role });
 
       console.log('User registered successfully:', data);
       alert(`Usuario registrado exitosamente. Su ID de usuario es: ${data.id_user}`);
-      onBackToLogin(); // Call the function to go back to login
+      navigate('/login'); // Redirigir al login después de crear el usuario
     } catch (error) {
       console.error('Error:', error);
-      setError('Ocurrió un error. Por favor, intente nuevamente.');
+      setError(error.response.data.error || 'Ocurrió un error. Por favor, intente nuevamente.');
     }
   };
 
@@ -57,8 +60,21 @@ function UserCreation({ onBackToLogin }) {
           required
         />
       </div>
+      <div>
+        <label htmlFor="role">Rol:</label>
+        <select
+          id="role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          required
+        >
+          <option value="funcionario">Funcionario</option>
+          <option value="admin">Administrador</option>
+          <option value="cajero">Cajero</option>
+        </select>
+      </div>
       <button type="submit">Crear Usuario</button>
-      <button type="button" onClick={onBackToLogin} className="back-btn">
+      <button type="button" onClick={() => navigate('/login')} className="back-btn">
         Volver al Login
       </button>
     </form>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../service/api';
 
-function LoginForm({ onLoginSuccess }) {
+function LoginForm({ onLoginSuccess, toggleUserCreation }) {
   const [id_user, setIdUser] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -46,6 +46,9 @@ function LoginForm({ onLoginSuccess }) {
         />
       </div>
       <button type="submit">Login</button>
+      <button type="button" onClick={toggleUserCreation} className="create-user-btn">
+        Crear Usuario
+      </button>
     </form>
   );
 }

@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    role: {
+        type: String,
+        enum: ['admin', 'funcionario', 'cajero'],
+        default: 'funcionario',
+    },
 });
 
 // Middleware para encriptar la contraseña antes de guardar el usuario

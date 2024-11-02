@@ -1,7 +1,7 @@
 const app = require('./app');
 const mongoose = require('mongoose');
 
-const PORT = process.env.PORT || 5000; // Cambia el puerto aquí
+const PORT = process.env.PORT || 5000;
 
 // Conexión a la base de datos
 mongoose.connect('mongodb://localhost:27017/recuperativa_dwim', {

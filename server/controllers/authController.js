@@ -7,13 +7,17 @@ const generateUserId = () => {
 
 // Registro de usuario
 exports.register = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
     const id_user = generateUserId();
     try {
-        const user = new User({ id_user, name, email, password });
+        const user = new User({ id_user, name, email, password, role });
         await user.save();
         res.status(201).json({ message: 'Usuario registrado exitosamente', id_user });
     } catch (error) {
+        if (error.code === 11000) {
+            // Error de clave duplicada
+            return res.status(400).json({ error: 'El correo electrónico ya está registrado' });
+        }
         console.error('Error al registrar usuario:', error);
         res.status(500).json({ error: 'Error al registrar usuario' });
     }
@@ -31,7 +35,7 @@ exports.login = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
-        res.json({ message: 'Autenticación exitosa', user: { id_user: user.id_user, name: user.name } });
+        res.json({ message: 'Autenticación exitosa', user: { id_user: user.id_user, name: user.name, role: user.role } });
     } catch (error) {
         console.error('Error en la autenticación:', error);
         res.status(500).json({ error: 'Error en la autenticación' });
