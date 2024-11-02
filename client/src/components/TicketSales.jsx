@@ -26,13 +26,23 @@ export default function TicketSales({ userId, onLogout }) {
     }
   }
 
+  const handleLogout = async () => {
+    try {
+      await onLogout()
+      toast.success('Sesión cerrada exitosamente')
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error)
+      toast.error('Error al cerrar sesión')
+    }
+  }
+
   return (
     <div className="ticket-sales-container">
       <header className="header">
         <div className="header-content">
           <h1>Empresa X</h1>
           <h1>  </h1>
-          <button onClick={onLogout} className="logout-button">
+          <button onClick={handleLogout} className="logout-button">
             Log out
           </button>
         </div>

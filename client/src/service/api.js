@@ -40,5 +40,14 @@ export const sellTicket = async (ticketData) => {
         throw error;
     }
 };
+export const logout = async () => {
+    try {
+        const response = await api.post('/auth/logout');
+        return response.data;
+    } catch (error) {
+        console.error('Error al cerrar sesión:', error);
+        throw error;
+    }
+};
 
 export default api;
