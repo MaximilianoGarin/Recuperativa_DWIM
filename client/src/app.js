@@ -7,38 +7,40 @@ import Report from './components/Report';
 import SendReport from './components/SendReport';
 import AdditionalTicket from './components/AdditionalTicket';
 import Sales from './components/Sales';
+import AdminDashboard from './components/AdminDashboard';
 import './styles/App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showUserCreation, setShowUserCreation] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  const handleLoginSuccess = (user) => {
+  const handleLoginSuccess = (userData) => {
     setIsLoggedIn(true);
-    setUser(user);
+    setUser(userData);
+    if (userData.role === 'admin') {
+      navigate('/admin');
+    } else {
+      navigate('/tickets');
+    }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUser(null);
-  };
-
-  const toggleUserCreation = () => {
-    setShowUserCreation(!showUserCreation);
-    navigate('/register'); // Redirigir a la página de registro
+    navigate('/login');
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Venta de tickets</h1>
+        <h1>Sistema de Gestión de Tickets</h1>
       </header>
       <Routes>
-        <Route path="/login" element={isLoggedIn ? <Navigate to="/tickets" /> : <LoginForm onLoginSuccess={handleLoginSuccess} toggleUserCreation={toggleUserCreation} />} />
-        <Route path="/register" element={isLoggedIn ? <Navigate to="/tickets" /> : <UserCreation onBackToLogin={toggleUserCreation} />} />
-        <Route path="/tickets" element={isLoggedIn ? <TicketSales user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/login" element={isLoggedIn ? <Navigate to={user?.role === 'admin' ? '/admin' : '/tickets'} /> : <LoginForm onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="/user-creation" element={isLoggedIn && user?.role === 'admin' ? <UserCreation /> : <Navigate to="/login" />} />
+        <Route path="/tickets" element={isLoggedIn && user?.role !== 'admin' ? <TicketSales user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/admin" element={isLoggedIn && user?.role === 'admin' ? <AdminDashboard user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/report" element={isLoggedIn ? <Report /> : <Navigate to="/login" />} />
         <Route path="/additional-ticket" element={isLoggedIn ? <AdditionalTicket /> : <Navigate to="/login" />} />
         <Route path="/sales" element={isLoggedIn ? <Sales /> : <Navigate to="/login" />} />
