@@ -87,9 +87,9 @@ export default function TicketSales({ user, onLogout }) {
                 required
               >
                 <option value="">Seleccione un tipo</option>
-                <option value="general">General</option>
-                <option value="vip">VIP</option>
-                <option value="estudiante">Estudiante</option>
+                <option value="general">Externo</option>
+                <option value="vip">Interno</option>
+                <option value="estudiante">Turno 3</option>
               </select>
             </div>
 
@@ -105,8 +105,8 @@ export default function TicketSales({ user, onLogout }) {
             </div>
 
             <div className="button-group">
-              <Button type="submit">Vender Tickets</Button>
-              <Button type="button" onClick={handlePrint}>Imprimir</Button>
+              <Button type="submit">Vender Tickets Adicional</Button>
+              <Button type="button" onClick={handlePrint}>Imprimir Vale</Button>
             </div>
           </form>
         </div>
