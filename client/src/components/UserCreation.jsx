@@ -75,7 +75,7 @@ function UserCreation({ onBackToLogin }) {
       </div>
       <button type="submit">Crear Usuario</button>
       <button type="button" onClick={() => navigate('/login')} className="back-btn">
-        Volver al Login
+        Volver a gestion de administrador
       </button>
     </form>
   );

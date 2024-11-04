@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../service/api';
 
-function LoginForm({ onLoginSuccess, toggleUserCreation }) {
+function LoginForm({ onLoginSuccess }) {
   const [id_user, setIdUser] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -12,7 +12,6 @@ function LoginForm({ onLoginSuccess, toggleUserCreation }) {
 
     try {
       const data = await login({ id_user, password });
-
       console.log('Login successful:', data);
       onLoginSuccess(data.user); // Pasa el objeto user al componente principal
     } catch (error) {
@@ -46,9 +45,6 @@ function LoginForm({ onLoginSuccess, toggleUserCreation }) {
         />
       </div>
       <button type="submit">Login</button>
-      <button type="button" onClick={toggleUserCreation} className="create-user-btn">
-        Crear Usuario
-      </button>
     </form>
   );
 }
