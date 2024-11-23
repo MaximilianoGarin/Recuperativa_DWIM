@@ -35,8 +35,8 @@ function AdditionalTicket() {
             required
           >
             <option value="">Seleccione un tipo</option>
-            <option value="general">General</option>
-            <option value="vip">VIP</option>
+            <option value="general">Externo</option>
+            <option value="vip">Interno</option>
             <option value="estudiante">Estudiante</option>
           </select>
         </div>
