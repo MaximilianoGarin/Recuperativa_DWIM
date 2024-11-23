@@ -38,7 +38,7 @@ function App() {
       </header>
       <Routes>
         <Route path="/login" element={isLoggedIn ? <Navigate to={user?.role === 'admin' ? '/admin' : '/tickets'} /> : <LoginForm onLoginSuccess={handleLoginSuccess} />} />
-        <Route path="/user-creation" element={isLoggedIn && user?.role === 'admin' ? <UserCreation /> : <Navigate to="/login" />} />
+        <Route path="/user-creation" element={<UserCreation />} />
         <Route path="/tickets" element={isLoggedIn && user?.role !== 'admin' ? <TicketSales user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/admin" element={isLoggedIn && user?.role === 'admin' ? <AdminDashboard user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/report" element={isLoggedIn ? <Report /> : <Navigate to="/login" />} />

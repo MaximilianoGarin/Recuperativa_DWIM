@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const PORT = process.env.PORT || 5000;
 
 // Conexión a la base de datos
-mongoose.connect('mongodb://localhost:27017/recuperativa_dwim', {
+mongoose.connect('mongodb://localhost:27017/recuperativa', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -16,5 +16,5 @@ mongoose.connect('mongodb://localhost:27017/recuperativa_dwim', {
 })
 .catch((error) => {
     console.error('Error al conectar a la base de datos MongoDB en mongodb://localhost:27017/recuperativa_dwim:', error.message);
-    process.exit(1); // Salir del proceso con error
+    process.exit(1);
 });

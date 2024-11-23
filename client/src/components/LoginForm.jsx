@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../service/api';
 
 function LoginForm({ onLoginSuccess }) {
   const [id_user, setIdUser] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +46,10 @@ function LoginForm({ onLoginSuccess }) {
           required
         />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">Iniciar Sesión</button>
+      <button type="button" onClick={() => navigate('/user-creation')} className="register-btn">
+        Registrarse
+      </button>
     </form>
   );
 }
