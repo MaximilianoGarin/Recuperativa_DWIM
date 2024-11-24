@@ -1,60 +1,142 @@
+/* Fondo y Contenedor Principal */
 .admin-dashboard-container {
-    min-height: 100vh;
-    background-color: #f5f5f5;
-  }
-  
-  .admin-controls {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
+  min-height: 100vh;
+  background-color: #f1f1f1; /* Color de fondo más suave */
+  font-family: 'Roboto', sans-serif; /* Fuente más moderna */
+}
+
+.header {
+  background-color: #4e54c8; /* Color principal */
+  padding: 20px 0;
+  color: white;
+  border-bottom: 3px solid #8f94fb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logout-button {
+  background-color: #8f94fb;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #6c63ff; /* Hover con un color más oscuro */
+}
+
+/* Contenido Principal */
+.main-content {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Sección de Información del Usuario */
+.user-info-section {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Controles Administrativos */
+.admin-controls {
+  margin-top: 30px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Más espacio en las cards */
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Cards con más sombra y nuevo color */
+.admin-section {
+  background-color: #e6e7e9; /* Color gris claro para destacar más */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-section:hover {
+  transform: translateY(-8px); /* Efecto de hover más marcado */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Sombra aún más pronunciada en hover */
+}
+
+.admin-section h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #4e54c8; /* Color de encabezados */
+  font-weight: 600;
+}
+
+.admin-button {
+  background-color: #4e54c8;
+  color: white;
+  padding: 14px;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.admin-button:hover {
+  background-color: #6c63ff; /* Hover más oscuro */
+  transform: translateY(-3px); /* Efecto de hover */
+}
+
+.admin-button.primary {
+  background-color: #8f94fb;
+}
+
+.admin-button.primary:hover {
+  background-color: #6c63ff;
+}
+
+/* Mensaje de Error o Información */
+.message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #ff6f61; /* Color de fondo para mensajes de error */
+  color: white;
+  font-weight: 600;
+  border: 1px solid #ff4c39; /* Borde de mensaje de error */
+}
+
+/* Mobile */
+@media (max-width: 768px) {
   .admin-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: 1fr;
   }
-  
-  .admin-section {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .main-content {
+    padding: 15px;
   }
-  
-  .admin-section h3 {
-    margin-bottom: 1rem;
-    color: #333;
-    font-size: 1.2rem;
-    font-weight: 600;
+
+  .logout-button {
+    padding: 6px 16px;
   }
-  
+
   .admin-button {
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
+    padding: 12px;
   }
-  
-  .admin-button:last-child {
-    margin-bottom: 0;
-  }
-  
-  .message {
-    margin: 1rem 0;
-    padding: 1rem;
-    border-radius: 4px;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-  }
-  
-  @media (max-width: 768px) {
-    .admin-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .admin-controls {
-      padding: 1rem;
-    }
-  }
+}

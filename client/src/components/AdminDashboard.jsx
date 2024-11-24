@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/admin-dashboard.css';
 
 export default function AdminDashboard({ user, onLogout }) {
   const navigate = useNavigate();
@@ -50,9 +51,9 @@ export default function AdminDashboard({ user, onLogout }) {
 
       <main className="main-content">
         <div className="user-info-section">
-          <span>Administrador: {user?.name}</span>
+          <span>Administrador: <strong>{user?.name}</strong></span>
           <br />
-          <span>Rol: {user?.role}</span>
+          <span>Rol: <strong>{user?.role}</strong></span>
         </div>
 
         <div className="admin-controls">
@@ -62,58 +63,37 @@ export default function AdminDashboard({ user, onLogout }) {
           <div className="admin-grid">
             <div className="admin-section">
               <h3>Gestión de Servicios</h3>
-              <Button 
-                onClick={() => handleAction('services')}
-                className="admin-button"
-              >
+              <Button onClick={() => handleAction('services')} className="admin-button">
                 Definir Servicios
               </Button>
             </div>
 
             <div className="admin-section">
               <h3>Gestión de Vales</h3>
-              <Button 
-                onClick={() => handleAction('tickets')}
-                className="admin-button"
-              >
+              <Button onClick={() => handleAction('tickets')} className="admin-button">
                 Generar Vales Adicionales
               </Button>
-              <Button 
-                onClick={() => handleAction('additional')}
-                className="admin-button"
-              >
+              <Button onClick={() => handleAction('additional')} className="admin-button">
                 Definir Vales
               </Button>
             </div>
 
             <div className="admin-section">
               <h3>Informes y Auditoría</h3>
-              <Button 
-                onClick={() => handleAction('reports')}
-                className="admin-button"
-              >
+              <Button onClick={() => handleAction('reports')} className="admin-button">
                 Generar Informes
               </Button>
-              <Button 
-                onClick={() => handleAction('audit')}
-                className="admin-button"
-              >
+              <Button onClick={() => handleAction('audit')} className="admin-button">
                 Auditoría de Vales
               </Button>
             </div>
 
             <div className="admin-section">
               <h3>Gestión de Usuarios</h3>
-              <Button 
-                onClick={() => handleAction('users')}
-                className="admin-button"
-              >
+              <Button onClick={() => handleAction('users')} className="admin-button">
                 Definir Tipos de Usuario
               </Button>
-              <Button 
-                onClick={() => handleAction('createUser')}
-                className="admin-button primary"
-              >
+              <Button onClick={() => handleAction('createUser')} className="admin-button primary">
                 Generar Perfil de Usuario
               </Button>
             </div>

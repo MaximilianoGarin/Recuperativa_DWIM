@@ -36,17 +36,19 @@ function App() {
       <header className="App-header">
         <h1>Sistema de Gestión de Tickets</h1>
       </header>
-      <Routes>
-        <Route path="/login" element={isLoggedIn ? <Navigate to={user?.role === 'admin' ? '/admin' : '/tickets'} /> : <LoginForm onLoginSuccess={handleLoginSuccess} />} />
-        <Route path="/user-creation" element={<UserCreation />} />
-        <Route path="/tickets" element={isLoggedIn && user?.role !== 'admin' ? <TicketSales user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
-        <Route path="/admin" element={isLoggedIn && user?.role === 'admin' ? <AdminDashboard user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
-        <Route path="/report" element={isLoggedIn ? <Report /> : <Navigate to="/login" />} />
-        <Route path="/additional-ticket" element={isLoggedIn ? <AdditionalTicket /> : <Navigate to="/login" />} />
-        <Route path="/sales" element={isLoggedIn ? <Sales /> : <Navigate to="/login" />} />
-        <Route path="/send-report" element={isLoggedIn ? <SendReport /> : <Navigate to="/login" />} />
-        <Route path="/" element={<Navigate to="/login" />} />
-      </Routes>
+      <div className="App-content">
+        <Routes>
+          <Route path="/login" element={isLoggedIn ? <Navigate to={user?.role === 'admin' ? '/admin' : '/tickets'} /> : <LoginForm onLoginSuccess={handleLoginSuccess} />} />
+          <Route path="/user-creation" element={<UserCreation />} />
+          <Route path="/tickets" element={isLoggedIn && user?.role !== 'admin' ? <TicketSales user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+          <Route path="/admin" element={isLoggedIn && user?.role === 'admin' ? <AdminDashboard user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
+          <Route path="/report" element={isLoggedIn ? <Report /> : <Navigate to="/login" />} />
+          <Route path="/additional-ticket" element={isLoggedIn ? <AdditionalTicket /> : <Navigate to="/login" />} />
+          <Route path="/sales" element={isLoggedIn ? <Sales /> : <Navigate to="/login" />} />
+          <Route path="/send-report" element={isLoggedIn ? <SendReport /> : <Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      </div>
     </div>
   );
 }

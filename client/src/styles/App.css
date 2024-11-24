@@ -1,325 +1,97 @@
-/* Reset and base styles */
-* {
-  box-sizing: border-box;
+body {
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #1a1b26;
-  color: #ffffff;
-  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* Gradiente de fondo */
+  height: 100vh;
+  color: #fff;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Estilo del contenedor principal */
 .App {
-  text-align: center;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-/* Common form styles */
-.login-form,
-.ticket-sales,
-.user-creation-form {
-  background-color: #24283b;
-  padding: 2rem;
-  border-radius: 8px;
   width: 100%;
-  max-width: 400px;
-  margin: 2rem auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #414868;
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-.login-form h2,
-.ticket-sales h2,
-.user-creation-form h2 {
-  color: #7aa2f7;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+/* Estilo del encabezado */
+.App-header {
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Input styles */
-input,
-select {
+/* Estilo del contenido principal */
+.App-content {
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* Gradiente para el contenido */
+  color: #fff;
+}
+
+/* Estilos para formularios y botones */
+input, select, button {
   width: 100%;
   padding: 0.75rem;
   margin: 0.5rem 0 1rem;
   border-radius: 4px;
-  border: 1px solid #414868;
-  background-color: #1a1b26;
-  color: #ffffff;
   font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-input:focus,
-select:focus {
+input, select {
+  background-color: #1a1b26;
+  border: 1px solid #414868;
+  color: #ffffff;
+}
+
+input:focus, select:focus {
   outline: none;
   border-color: #7aa2f7;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #a9b1d6;
-}
-
-/* Button styles */
+/* Estilos de los botones */
 button {
-  width: 100%;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 4px;
   background-color: #7aa2f7;
-  color: #1a1b26;
-  font-size: 1rem;
+  color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  margin: 0.5rem 0;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
   background-color: #89b4fa;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
-.back-btn {
-  background-color: #f7768e;
-}
-
-.back-btn:hover {
-  background-color: #ff7a93;
-}
-
-.create-user-btn {
-  background-color: #9ece6a;
-}
-
-.create-user-btn:hover {
-  background-color: #a6e3a1;
-}
-
-/* Header styles */
-.header {
-  width: 100%;
-  padding: 1rem;
-  background-color: #24283b;
-  border-bottom: 1px solid #414868;
-  margin-bottom: 2rem;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* Info section styles */
-.info-section {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+/* Añadir un espacio entre los componentes */
+.App-content > * {
   margin-bottom: 1.5rem;
-  gap: 1rem;
 }
 
-.user-info,
-.shift-info {
-  background-color: #1a1b26;
-  padding: 0.75rem;
-  border-radius: 4px;
-  flex: 1;
-  text-align: center;
-  border: 1px solid #414868;
-}
-
-/* Message styles */
-.error-message {
-  color: #f7768e;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.success-message {
-  color: #9ece6a;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* Toast styles */
-.Toastify__toast {
-  background-color: #24283b;
-  color: #ffffff;
-}
-
-.Toastify__toast--success {
-  background-color: #9ece6a;
-}
-
-.Toastify__toast--error {
-  background-color: #f7768e;
-}
-
-/* Responsive styles */
-@media (max-width: 480px) {
-  .login-form,
-  .ticket-sales,
-  .user-creation-form {
-    padding: 1.5rem;
-    margin: 1rem;
+/* Para mejorar la visualización en pantallas pequeñas */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2rem;
   }
-
-  .header {
-    padding: 0.75rem;
+  
+  .App-content {
+    padding: 1rem;
+    max-width: 90%;
   }
-}
-/* Estilos de los tickets */
-.ticket-sales-container {
-  min-height: 100vh;
-  background-color: #1a1b26;
-  color: #ffffff;
-}
-
-.header {
-  background-color: #1a1b26;
-  border-bottom: 1px solid #2f3342;
-  padding: 1rem 2rem;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.header h1 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-.logout-button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.logout-button:hover {
-  background-color: #2980b9;
-}
-
-.main-content {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.user-info-section {
-  background-color: #24283b;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-}
-
-.ticket-form-container {
-  background-color: #24283b;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.ticket-form-container h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #ffffff;
-  font-size: 1.5rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #a9b1d6;
-}
-
-.form-group select,
-.form-group input {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #1a1b26;
-  border: 1px solid #2f3342;
-  border-radius: 4px;
-  color: #ffffff;
-  font-size: 1rem;
-}
-
-.form-group select:focus,
-.form-group input:focus {
-  outline: none;
-  border-color: #3498db;
-}
-
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.primary-button {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.primary-button:hover {
-  background-color: #2980b9;
-}
-
-.message {
-  text-align: center;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  background-color: #1a1b26;
-  border-radius: 4px;
-}
-
-/* Toast customization */
-.Toastify__toast {
-  background-color: #24283b;
-  color: #ffffff;
-}
-
-.Toastify__toast--success {
-  background-color: #2ecc71;
-}
-
-.Toastify__toast--error {
-  background-color: #e74c3c;
 }
