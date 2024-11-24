@@ -1,0 +1,39 @@
+/* auditoría de tickets */
+.ticket-audit-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .ticket-audit-container h2 {
+    font-size: 1.8rem;
+    color: #4e54c8;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .ticket-count {
+    text-align: center;
+  }
+  
+  .ticket-count h3 {
+    font-size: 1.6rem;
+    color: #333;
+  }
+  
+  .ticket-count p {
+    font-size: 2rem;
+    color: #4caf50;
+    font-weight: bold;
+  }
+  
+  .error-message {
+    color: #ff4c39;
+    font-weight: bold;
+    text-align: center;
+  }
+  

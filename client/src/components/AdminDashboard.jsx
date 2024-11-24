@@ -21,6 +21,9 @@ export default function AdminDashboard({ user, onLogout }) {
           handleNavigation('/define-services');
           break;
         case 'tickets':
+          handleNavigation('/define-tickets');
+          break;
+        case 'additional':
           handleNavigation('/additional-ticket');
           break;
         case 'reports':
@@ -33,7 +36,7 @@ export default function AdminDashboard({ user, onLogout }) {
           handleNavigation('/user-management');
           break;
         case 'audit':
-          handleNavigation('/audit-tickets');
+          handleNavigation('/ticket-audith');
           break;
         default:
           toast.info('Funcionalidad en desarrollo');
@@ -46,60 +49,60 @@ export default function AdminDashboard({ user, onLogout }) {
 
   return (
     <div className="admin-dashboard-container">
-      <header className="header">
-        <div className="header-content">
+      <header className="admin-dashboard-header">
+        <div className="admin-dashboard-header-content">
           <h1>Panel de Administración</h1>
-          <Button onClick={onLogout} className="logout-button">
+          <Button onClick={onLogout} className="admin-dashboard-logout-button">
             Log out
           </Button>
         </div>
       </header>
 
-      <main className="main-content">
-        <div className="user-info-section">
+      <main className="admin-dashboard-main-content">
+        <div className="admin-dashboard-user-info-section">
           <span>Administrador: <strong>{user?.name}</strong></span>
           <br />
           <span>Rol: <strong>{user?.role}</strong></span>
         </div>
 
-        <div className="admin-controls">
+        <div className="admin-dashboard-controls">
           <h2>Funciones Administrativas</h2>
-          {message && <p className="message">{message}</p>}
+          {message && <p className="admin-dashboard-message">{message}</p>}
 
-          <div className="admin-grid">
-            <div className="admin-section">
+          <div className="admin-dashboard-grid">
+            <div className="admin-dashboard-section">
               <h3>Gestión de Servicios</h3>
-              <Button onClick={() => handleAction('services')} className="admin-button">
+              <Button onClick={() => handleAction('services')} className="admin-dashboard-button">
                 Definir Servicios
               </Button>
             </div>
 
-            <div className="admin-section">
+            <div className="admin-dashboard-section">
               <h3>Gestión de Vales</h3>
-              <Button onClick={() => handleAction('tickets')} className="admin-button">
-                Generar Vales Adicionales
-              </Button>
-              <Button onClick={() => handleAction('additional')} className="admin-button">
+              <Button onClick={() => handleAction('tickets')} className="admin-dashboard-button">
                 Definir Vales
+              </Button>
+              <Button onClick={() => handleAction('additional')} className="admin-dashboard-button">
+                Generar Vales Adicionales
               </Button>
             </div>
 
-            <div className="admin-section">
+            <div className="admin-dashboard-section">
               <h3>Informes y Auditoría</h3>
-              <Button onClick={() => handleAction('reports')} className="admin-button">
+              <Button onClick={() => handleAction('reports')} className="admin-dashboard-button">
                 Generar Informes
               </Button>
-              <Button onClick={() => handleAction('audit')} className="admin-button">
+              <Button onClick={() => handleAction('audit')} className="admin-dashboard-button">
                 Auditoría de Vales
               </Button>
             </div>
 
-            <div className="admin-section">
+            <div className="admin-dashboard-section">
               <h3>Gestión de Usuarios</h3>
-              <Button onClick={() => handleAction('users')} className="admin-button">
-                Definir Tipos de Usuario
+              <Button onClick={() => handleAction('users')} className="admin-dashboard-button">
+                Gestion de Usuario
               </Button>
-              <Button onClick={() => handleAction('createUser')} className="admin-button primary">
+              <Button onClick={() => handleAction('createUser')} className="admin-dashboard-button admin-dashboard-button-primary">
                 Generar Perfil de Usuario
               </Button>
             </div>

@@ -1,11 +1,10 @@
-/* Fondo y Contenedor Principal */
 .admin-dashboard-container {
   min-height: 100vh;
   background-color: #f1f1f1; /* Color de fondo más suave */
   font-family: 'Roboto', sans-serif; /* Fuente más moderna */
 }
 
-.header {
+.admin-dashboard-header {
   background-color: #4e54c8; /* Color principal */
   padding: 20px 0;
   color: white;
@@ -13,7 +12,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-.header-content {
+.admin-dashboard-header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,7 +21,7 @@
   padding: 0 20px;
 }
 
-.logout-button {
+.admin-dashboard-logout-button {
   background-color: #8f94fb;
   color: white;
   border-radius: 20px;
@@ -32,12 +31,12 @@
   transition: background-color 0.3s;
 }
 
-.logout-button:hover {
+.admin-dashboard-logout-button:hover {
   background-color: #6c63ff; /* Hover con un color más oscuro */
 }
 
 /* Contenido Principal */
-.main-content {
+.admin-dashboard-main-content {
   max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
@@ -47,7 +46,7 @@
 }
 
 /* Sección de Información del Usuario */
-.user-info-section {
+.admin-dashboard-user-info-section {
   margin-bottom: 30px;
   font-size: 1.2rem;
   font-weight: 500;
@@ -55,11 +54,11 @@
 }
 
 /* Controles Administrativos */
-.admin-controls {
+.admin-dashboard-controls {
   margin-top: 30px;
 }
 
-.admin-grid {
+.admin-dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Más espacio en las cards */
   gap: 30px;
@@ -67,7 +66,7 @@
 }
 
 /* Cards con más sombra y nuevo color */
-.admin-section {
+.admin-dashboard-section {
   background-color: #e6e7e9; /* Color gris claro para destacar más */
   padding: 20px;
   border-radius: 12px;
@@ -75,19 +74,19 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.admin-section:hover {
+.admin-dashboard-section:hover {
   transform: translateY(-8px); /* Efecto de hover más marcado */
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Sombra aún más pronunciada en hover */
 }
 
-.admin-section h3 {
+.admin-dashboard-section h3 {
   font-size: 1.6rem;
   margin-bottom: 20px;
   color: #4e54c8; /* Color de encabezados */
   font-weight: 600;
 }
 
-.admin-button {
+.admin-dashboard-button {
   background-color: #4e54c8;
   color: white;
   padding: 14px;
@@ -98,21 +97,21 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.admin-button:hover {
+.admin-dashboard-button:hover {
   background-color: #6c63ff; /* Hover más oscuro */
   transform: translateY(-3px); /* Efecto de hover */
 }
 
-.admin-button.primary {
+.admin-dashboard-button.primary {
   background-color: #8f94fb;
 }
 
-.admin-button.primary:hover {
+.admin-dashboard-button.primary:hover {
   background-color: #6c63ff;
 }
 
 /* Mensaje de Error o Información */
-.message {
+.admin-dashboard-message {
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 4px;
@@ -124,19 +123,19 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-  .admin-grid {
+  .admin-dashboard-grid {
     grid-template-columns: 1fr;
   }
 
-  .main-content {
+  .admin-dashboard-main-content {
     padding: 15px;
   }
 
-  .logout-button {
+  .admin-dashboard-logout-button {
     padding: 6px 16px;
   }
 
-  .admin-button {
+  .admin-dashboard-button {
     padding: 12px;
   }
 }

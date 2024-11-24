@@ -1,0 +1,104 @@
+/* Contenedor principal */
+.service-definer-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .service-definer-container h2 {
+    font-size: 1.8rem;
+    color: #4e54c8;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Mensajes */
+  .message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .message.success {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .message.error {
+    background-color: #ff4c39;
+    color: white;
+  }
+  
+  /* Formularios */
+  .service-definer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #4e54c8;
+  }
+  
+  textarea {
+    resize: none;
+    height: 80px;
+  }
+  
+  /* Botón de envío */
+  .submit-button {
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: #4e54c8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submit-button:hover {
+    background: #6c63ff;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsivo */
+  @media (max-width: 480px) {
+    .service-definer-container {
+      padding: 15px;
+    }
+  
+    .service-definer-container h2 {
+      font-size: 1.5rem;
+    }
+  }
