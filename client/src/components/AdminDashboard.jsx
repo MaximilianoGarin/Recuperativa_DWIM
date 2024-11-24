@@ -29,6 +29,12 @@ export default function AdminDashboard({ user, onLogout }) {
         case 'createUser':
           handleNavigation('/user-creation');
           break;
+        case 'users':
+          handleNavigation('/user-management');
+          break;
+        case 'audit':
+          handleNavigation('/audit-tickets');
+          break;
         default:
           toast.info('Funcionalidad en desarrollo');
       }

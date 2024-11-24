@@ -1,39 +1,45 @@
 const nodemailer = require('nodemailer');
-const User = require('../models/user');
-const Ticket = require('../models/ticket');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'ticketdswmi@gmail.com',
+    pass: 'pmad wxyz hfed esha',
+  },
+});
+
+exports.sendWelcomeEmail = async (email, id_user) => {
+  try {
+    const info = await transporter.sendMail({
+      from: 'ticketdswmi@gmail.com',
+      to: email,
+      subject: 'Bienvenido a nuestro sistema',
+      text: `Hola, gracias por registrarte. Tu ID de usuario es: ${id_user}`,
+    });
+    console.log('Correo de bienvenida enviado:', info);
+  } catch (error) {
+    console.error('Error al enviar el correo de bienvenida:', error);
+  }
+};
 
 exports.sendWeeklyReport = async (req, res) => {
     try {
-        const users = await User.find();
-        const tickets = await Ticket.find();
-
-        const report = tickets.reduce((acc, ticket) => {
-            acc[ticket.userId] = (acc[ticket.userId] || 0) + ticket.quantity;
-            return acc;
-        }, {});
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'your-email@gmail.com',
-                pass: 'your-email-password',
-            },
-        });
-
-        for (const user of users) {
-            const mailOptions = {
-                from: 'your-email@gmail.com',
-                to: user.email,
-                subject: 'Informe semanal de vales',
-                text: `Hola ${user.name},\n\nAquí tienes tu informe semanal de vales:\n\nVales disponibles: ${report[user._id] || 0}\nVales utilizados: ${report[user._id] || 0}\nVales no utilizados: ${report[user._id] || 0}\n\nSaludos,\nEquipo de Libros Impresos S.A.`,
-            };
-
-            await transporter.sendMail(mailOptions);
-        }
-
-        res.status(200).json({ message: 'Informes enviados exitosamente' });
+      const pdfPath = path.join(__dirname, 'path/to/your/report.pdf');
+      const info = await transporter.sendMail({
+        from: 'ticketdswmi@gmail.com',
+        to: 'cr.hachim2@gmail.com',
+        subject: 'Informe Semanal',
+        text: 'Este es el informe semanal.',
+        attachments: [
+          {
+            filename: 'report.pdf',
+            path: pdfPath,
+          },
+        ],
+      });
+      res.status(200).json({ message: 'Informe enviado exitosamente', info });
     } catch (error) {
-        console.error('Error al enviar los informes:', error);
-        res.status(500).json({ error: 'Error al enviar los informes' });
+      console.error('Error al enviar los informes:', error);
+      res.status(500).json({ error: 'Error al enviar los informes' });
     }
-};
+  };

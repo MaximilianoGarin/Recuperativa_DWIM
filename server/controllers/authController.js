@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const { sendWelcomeEmail } = require('./emailController'); // Importar la función para enviar el correo
 
 // Función para generar un ID de usuario aleatorio de 3 dígitos
 const generateUserId = () => {
@@ -12,10 +13,13 @@ exports.register = async (req, res) => {
     try {
         const user = new User({ id_user, name, email, password, role });
         await user.save();
+        
+        // Enviar correo de bienvenida
+        await sendWelcomeEmail(email, id_user);
+
         res.status(201).json({ message: 'Usuario registrado exitosamente', id_user });
     } catch (error) {
         if (error.code === 11000) {
-            // Error de clave duplicada
             return res.status(400).json({ error: 'El correo electrónico ya está registrado' });
         }
         console.error('Error al registrar usuario:', error);

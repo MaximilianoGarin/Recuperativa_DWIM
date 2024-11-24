@@ -35,19 +35,11 @@ exports.createTicket = async (req, res) => {
 exports.createAdditionalTicket = async (req, res) => {
     const { ticketType, quantity, userId } = req.body;
     try {
-        if (!mongoose.Types.ObjectId.isValid(userId)) {
-            return res.status(400).json({ error: 'ID de usuario no válido' });
-        }
-        const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json({ error: 'Usuario no encontrado' });
-        }
-
-        const ticket = new Ticket({ ticketType, quantity, userId });
-        await ticket.save();
-        res.status(201).json({ message: 'Ticket adicional vendido exitosamente', ticket });
+      const ticket = new Ticket({ ticketType, quantity, userId });
+      await ticket.save();
+      res.status(201).json({ message: 'Ticket adicional creado exitosamente', ticket });
     } catch (error) {
-        console.error('Error al vender ticket adicional:', error);
-        res.status(500).json({ error: 'Error al vender ticket adicional' });
+      console.error('Error al crear ticket adicional:', error);
+      res.status(400).json({ error: 'Error al crear ticket adicional' });
     }
-};
+  };
