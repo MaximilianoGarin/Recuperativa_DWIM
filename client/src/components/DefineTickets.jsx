@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { DefineTicket } from '../service/api'; // Asegúrate de tener esta función en tu servicio API
+import '../styles/TicketDefiner.css';  // Importa el archivo CSS aquí
 
 function TicketDefiner() {
   const [title, setTitle] = useState('');
@@ -13,7 +14,7 @@ function TicketDefiner() {
     setMessage('');
 
     try {
-      const data = await createTicket({ title, priority, dueDate, status });
+      const data = await DefineTicket({ title, priority, dueDate, status });
       console.log('Ticket creado con éxito:', data);
       setMessage('Ticket definido exitosamente');
     } catch (error) {
@@ -26,7 +27,7 @@ function TicketDefiner() {
     <div className="ticket-definer-container">
       <h2>Definir Nuevo Ticket</h2>
       <form onSubmit={handleSubmit}>
-        {message && <p className="message">{message}</p>}
+        {message && <p className={`message ${message.includes('Error') ? 'error' : ''}`}>{message}</p>}
 
         <div className="form-group">
           <label>Título:</label>
