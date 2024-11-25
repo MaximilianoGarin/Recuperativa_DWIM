@@ -73,7 +73,7 @@ export const registerSale = async (saleData) => {
 
 
 export const getUsers = async () => {
-    const response = await api.get('../../../server/routes/users');  // Ruta para obtener todos los usuarios
+    const response = await api.get('/users');  // Ruta para obtener todos los usuarios
     return response.data;
 };
 
