@@ -37,7 +37,6 @@ function AdditionalTicket() {
             <option value="">Seleccione un tipo</option>
             <option value="general">Externo</option>
             <option value="vip">Interno</option>
-            <option value="estudiante">Estudiante</option>
           </select>
         </div>
 
