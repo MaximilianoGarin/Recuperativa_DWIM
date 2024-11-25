@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { sellTicket } from '../service/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Button from './Button';
+import '../styles/service.css';
 import jsPDF from 'jspdf';
 
 export default function TicketSales({ user, onLogout }) {
@@ -28,7 +28,6 @@ export default function TicketSales({ user, onLogout }) {
 
     try {
       const data = await sellTicket({ ticketType, quantity, userId: user._id });
-      console.log('Ticket sale successful:', data);
       setMessage('Ticket vendido exitosamente');
       toast.success('Se generó el vale');
       setTicketType('');
@@ -57,27 +56,32 @@ export default function TicketSales({ user, onLogout }) {
   };
 
   return (
-    <div className="ticket-sales-container">
-      <header className="header">
-        <div className="header-content">
-          <h1>Empresa X</h1>
-          <Button onClick={onLogout} className="logout-button">
-            Log out
-          </Button>
-        </div>
+    <div className="service-definer-container">
+      <header>
+        <h1 style={{ textAlign: 'center', color: '#4e54c8' }}>Empresa X</h1>
+        <button onClick={onLogout} className="submit-button" style={{ float: 'right' }}>
+          Log out
+        </button>
       </header>
 
-      <main className="main-content">
-        <div className="user-info-section">
-          <span>Usuario: {user.name}</span>
-          <br />
-          <span>Rol: {user.role}</span>
+      <main>
+        <div>
+          <p><strong>Usuario:</strong> {user.name}</p>
+          <p><strong>Rol:</strong> {user.role}</p>
         </div>
 
-        <div className="ticket-form-container">
+        <div>
           <h2>Venta de Tickets</h2>
-          <form onSubmit={handleSubmit}>
-            {message && <p className="message">{message}</p>}
+          <form className="service-definer-form" onSubmit={handleSubmit}>
+            {message && (
+              <p
+                className={`message ${
+                  message.toLowerCase().includes('error') ? 'error' : 'success'
+                }`}
+              >
+                {message}
+              </p>
+            )}
 
             <div className="form-group">
               <label>Tipo de Ticket:</label>
@@ -89,7 +93,6 @@ export default function TicketSales({ user, onLogout }) {
                 <option value="">Seleccione un tipo</option>
                 <option value="general">Externo</option>
                 <option value="vip">Interno</option>
-                <option value="estudiante">Turno 3</option>
               </select>
             </div>
 
@@ -104,22 +107,28 @@ export default function TicketSales({ user, onLogout }) {
               />
             </div>
 
-            <div className="button-group">
-              <Button type="submit">Vender Tickets Adicional</Button>
-              <Button type="button" onClick={handlePrint}>Imprimir Vale</Button>
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+              <button type="submit" className="submit-button">
+                Vender Tickets
+              </button>
+              <button type="button" onClick={handlePrint} className="submit-button">
+                Imprimir Vale
+              </button>
             </div>
           </form>
         </div>
       </main>
       <ToastContainer theme="dark" />
       {ticketInfo && (
-        <div className="ticket-info-modal">
+        <div>
           <h2>Información del Ticket</h2>
-          <p>ID de Usuario: {ticketInfo.userId}</p>
-          <p>Turno: {ticketInfo.turno}</p>
-          <p>Tipo de Ticket: {ticketInfo.ticketType}</p>
-          <p>Cantidad: {ticketInfo.quantity}</p>
-          <Button onClick={() => setTicketInfo(null)}>Cerrar</Button>
+          <p><strong>ID de Usuario:</strong> {ticketInfo.userId}</p>
+          <p><strong>Turno:</strong> {ticketInfo.turno}</p>
+          <p><strong>Tipo de Ticket:</strong> {ticketInfo.ticketType}</p>
+          <p><strong>Cantidad:</strong> {ticketInfo.quantity}</p>
+          <button onClick={() => setTicketInfo(null)} className="submit-button">
+            Cerrar
+          </button>
         </div>
       )}
     </div>

@@ -17,9 +17,7 @@ api.interceptors.response.use(
     }
 );
 
-/* ======================
-       AUTENTICACIÓN
-   ====================== */
+
 export const login = async (credentials) => {
     const response = await api.post('/auth/login', credentials);
     return response.data;
@@ -30,9 +28,7 @@ export const register = async (userData) => {
     return response.data;
 };
 
-/* ======================
-          TICKETS
-   ====================== */
+
 export const sellTicket = async (ticketData) => {
     const response = await api.post('/tickets/sell', ticketData);
     return response.data;
@@ -48,17 +44,12 @@ export const DefineTicket = async (ticketData) => {
     return response.data;
 };
 
-/* ======================
-         SERVICIOS
-   ====================== */
 export const DefineService = async (serviceData) => {
     const response = await api.post('/services/create', serviceData);
     return response.data;
 };
 
-/* ======================
-         INFORMES
-   ====================== */
+
 export const generateReport = async () => {
     const response = await api.get('/reports/generate');
     return response.data;
@@ -74,19 +65,15 @@ export const getTickets = async () => {
     return response.data;
 };
 
-/* ======================
-           VENTAS
-   ====================== */
+
 export const registerSale = async (saleData) => {
     const response = await api.post('/sales/register', saleData);
     return response.data;
 };
 
-/* ======================
-           USUARIOS
-   ====================== */
+
 export const getUsers = async () => {
-    const response = await api.get('/users');  // Ruta para obtener todos los usuarios
+    const response = await api.get('../../../server/routes/users');  // Ruta para obtener todos los usuarios
     return response.data;
 };
 

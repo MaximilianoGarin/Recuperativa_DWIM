@@ -1,6 +1,8 @@
-// /server/controllers/userController.js
+const express = require('express');
+const router = express.Router();
+const { getUsers, deleteUser } = require('../controllers/userController');
 
-exports.getUsers = (req, res) => {
-    // Aquí iría la lógica para obtener los usuarios
-    res.json({ users: [] });
-};
+router.get('/', getUsers);
+router.delete('/:userId', deleteUser);
+
+module.exports = router;
